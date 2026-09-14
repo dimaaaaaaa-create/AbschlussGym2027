@@ -1764,55 +1764,74 @@ window.ABI_DATA = {
    * Sofern ein Logo vorhanden ist, wird es automatisch statt der Initialen
    * angezeigt (siehe Sponsorkarte in components.js).
    * ---------------------------------------------------------------------- */
-  sponsors: [
-    { name: "Coca-Cola", initials: "CC", note: "Getränke-Sponsor für die Abiparty", url: "#" },
-    { name: "Fanta", initials: "F", note: "Erfrischungsgetränke für den Abiball", url: "#" },
-    { name: "Sprite", initials: "S", note: "Sponsor für unseren Weihnachtsmarkt-Stand", url: "#" }
-  ],
+sponsors: [
+  {
+    name: "Coca-Cola",
+    initials: "CC",
+    note: "Getränke-Sponsor für die Abiparty",
+    url: "#",
+
+    logo: "images/sponsor01.jpg"
+  },
+  {
+    name: "Fanta",
+    initials: "F",
+    note: "Erfrischungsgetränke für den Abiball",
+    url: "#",
+    logo: "images/sponsor02.jpg"
+  },
+  {
+    name: "Sprite",
+    initials: "S",
+    note: "Sponsor für unseren Weihnachtsmarkt-Stand",
+    url: "#",
+    logo: "images/sponsor03.jpg"
+  }
+],
 
   /* ------------------------------------------------------------------------
    * Events – Felder: name, date (ISO), time, category, location, description.
    * image (URL) ist optional: Wird kein Bild angegeben (null), zeigt die
    * Karte automatisch ein Platzhalter-Icon.
    * ---------------------------------------------------------------------- */
-  events: [
-    {
-      name: "Event 1 (Platzhalter)",
-      date: "2026-10-01",
-      time: "Uhrzeit folgt",
-      category: "Kategorie",
-      location: "Ort folgt",
-      description: "Platzhalter-Event – hier später Titel, Datum, Uhrzeit, Ort und Beschreibung eintragen.",
-      image: null
-    },
-    {
-      name: "Event 2 (Platzhalter)",
-      date: "2026-12-01",
-      time: "Uhrzeit folgt",
-      category: "Kategorie",
-      location: "Ort folgt",
-      description: "Platzhalter-Event – hier später Titel, Datum, Uhrzeit, Ort und Beschreibung eintragen.",
-      image: null
-    },
-    {
-      name: "Event 3 (Platzhalter)",
-      date: "2027-03-01",
-      time: "Uhrzeit folgt",
-      category: "Kategorie",
-      location: "Ort folgt",
-      description: "Platzhalter-Event – hier später Titel, Datum, Uhrzeit, Ort und Beschreibung eintragen.",
-      image: null
-    },
-    {
-      name: "Event 4 (Platzhalter)",
-      date: "2027-06-01",
-      time: "Uhrzeit folgt",
-      category: "Kategorie",
-      location: "Ort folgt",
-      description: "Platzhalter-Event – hier später Titel, Datum, Uhrzeit, Ort und Beschreibung eintragen.",
-      image: null
-    }
-  ],
+events: [
+  {
+    name: "Event 1 (Platzhalter)",
+    date: "2026-10-01",
+    time: "Uhrzeit folgt",
+    category: "Kategorie",
+    location: "Ort folgt",
+    description: "Platzhalter-Event – hier später Titel, Datum, Uhrzeit, Ort und Beschreibung eintragen.",
+    image: "images/event01.jpg"
+  },
+  {
+    name: "Event 2 (Platzhalter)",
+    date: "2026-12-01",
+    time: "Uhrzeit folgt",
+    category: "Kategorie",
+    location: "Ort folgt",
+    description: "Platzhalter-Event – hier später Titel, Datum, Uhrzeit, Ort und Beschreibung eintragen.",
+    image: "images/event02.jpg"
+  },
+  {
+    name: "Event 3 (Platzhalter)",
+    date: "2027-03-01",
+    time: "Uhrzeit folgt",
+    category: "Kategorie",
+    location: "Ort folgt",
+    description: "Platzhalter-Event – hier später Titel, Datum, Uhrzeit, Ort und Beschreibung eintragen.",
+    image: "images/event03.jpg"
+  },
+  {
+    name: "Event 4 (Platzhalter)",
+    date: "2027-06-01",
+    time: "Uhrzeit folgt",
+    category: "Kategorie",
+    location: "Ort folgt",
+    description: "Platzhalter-Event – hier später Titel, Datum, Uhrzeit, Ort und Beschreibung eintragen.",
+    image: "images/event04.jpg"
+  }
+],
 
   /* ------------------------------------------------------------------------
    * Abi-Kasse
@@ -2019,42 +2038,30 @@ window.Components = (() => {
    *   <img class="hoodie-preview__svg" src="mockups/design-01.png"
    *        alt="Hoodie-Design ‚Purple Core'">
    * -------------------------------------------------------------------- */
-  function hoodieSVG(option, uid) {
-    const palettes = {
-      purple:  { grad: ["#8B5CF6", "#4C1D95"], glow: "rgba(233,223,255,.5)", body: "#FFFFFF", det: "rgba(76,29,149,.35)", ink: "#4C1D95" },
-      midnight:{ grad: ["#1B1440", "#0B0818"], glow: "rgba(124,58,237,.55)", body: "#EFF3FF", det: "rgba(29,36,110,.30)", ink: "#1E1B4B" },
-      classic: { grad: ["#F6F3FC", "#E3DBF5"], glow: "rgba(109,40,217,.28)", body: "#171127", det: "rgba(255,255,255,.22)", ink: "#FFFFFF" }
-    };
-    const p = palettes[option.tone] || palettes.purple;
-    const gid = "hg-" + uid;
+function hoodieSVG(option, uid) {
 
-    return `
-    <div class="hoodie-preview" aria-hidden="true">
-      <div class="hoodie-preview__bg" style="background:radial-gradient(60% 45% at 50% 30%, ${p.glow}, transparent 70%), linear-gradient(160deg, ${p.grad[0]}, ${p.grad[1]});"></div>
+  const mockups = {
+    h1: "images/mockup01.jpg",
+    h2: "images/mockup02.jpg",
+    h3: "images/mockup03.jpg"
+  };
+
+  const src = mockups[option.id];
+
+  return `
+    <div class="hoodie-preview">
+      <div class="hoodie-preview__bg"></div>
+
       <span class="hoodie-preview__tag">${esc(option.tag)}</span>
-      <span class="hoodie-preview__ph">Platzhalter</span>
-      <svg class="hoodie-preview__svg" viewBox="0 0 400 500" role="img" aria-label="Platzhalter-Mockup für ${esc(option.name)}">
-        <defs>
-          <linearGradient id="${gid}" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="${p.body}"/>
-            <stop offset="1" stop-color="${p.body}" stop-opacity=".82"/>
-          </linearGradient>
-        </defs>
-        <path d="M124 118 C124 52 156 34 200 34 C244 34 276 52 276 118 C276 150 240 178 200 178 C160 178 124 150 124 118 Z" fill="${p.body}"/>
-        <path d="M82 168 C82 64 148 34 200 34 C252 34 318 64 318 168 L318 404 C318 438 296 462 262 462 L138 462 C104 462 82 438 82 404 Z" fill="url(#${gid})"/>
-        <path d="M148 318 L252 318 C255 358 233 380 200 380 C167 380 145 358 148 318 Z" fill="none" stroke="${p.det}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M172 156 L172 214" stroke="${p.det}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M228 156 L228 214" stroke="${p.det}" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="172" cy="220" r="7" fill="${p.det}"/>
-        <circle cx="228" cy="220" r="7" fill="${p.det}"/>
-        <path d="M104 438 Q200 448 296 438" fill="none" stroke="${p.det}" stroke-width="6" stroke-linecap="round"/>
-        <text x="200" y="300" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="92" fill="${p.ink}" letter-spacing="-3">27</text>
-        <text x="200" y="238" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="600" font-size="25" fill="${p.ink}" letter-spacing="7">ABI</text>
-        <text x="200" y="352" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="600" font-size="17" fill="${p.ink}" letter-spacing="5" opacity=".75">WERLTE</text>
-      </svg>
-    </div>`;
-  }
 
+      <img
+        class="hoodie-preview__svg"
+        src="${src}"
+        alt="Hoodie-Design ${esc(option.name)}"
+      >
+    </div>
+  `;
+}
   /* ----------------------------------------------------------------------
    * Hoodie-Karte
    * -------------------------------------------------------------------- */
